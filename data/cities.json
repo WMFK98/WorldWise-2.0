@@ -1,0 +1,28 @@
+{
+  "cities": [
+    {
+      "id": "c9e3",
+      "cityName": "La Calzada de Calatrava",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-08-06T11:36:04.141Z",
+      "notes": "",
+      "position": {
+        "lat": "38.548165423046584",
+        "lng": "-3.8232421875000004"
+      }
+    },
+    {
+      "id": "2881",
+      "cityName": "San Miguel del Arroyo",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-08-06T11:36:57.279Z",
+      "notes": "",
+      "position": {
+        "lat": "41.44272637767212",
+        "lng": "-4.526367187500001"
+      }
+    }
+  ]
+}
