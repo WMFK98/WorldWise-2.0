@@ -1,12 +1,13 @@
-import React from "react";
-import styles from "./CountryList.module.css";
-import Spinner from "./Spinner";
-import Message from "./Message";
-import CountryItem from "./CountryItem";
-import { useCities } from "../contexts/CitiesContext";
+import React from 'react';
+import styles from './CountryList.module.css';
+import Spinner from './Spinner';
+import Message from './Message';
+import CountryItem from './CountryItem';
+import { useCities } from '../contexts/CitiesContext';
 
 export default function CountryList() {
-  const { isLoading, cities } = useCities();
+  const isLoading = false,
+    cities = [];
   if (isLoading) return <Spinner />;
   const counties = cities.reduce((cur, { country, emoji }) => {
     if (cur.some((curCountry) => curCountry.country === country)) return cur;
@@ -15,7 +16,7 @@ export default function CountryList() {
   if (!cities.length)
     return (
       <Message
-        message={"Add your first city by clicking on a city on the map"}
+        message={'Add your first city by clicking on a city on the map'}
       />
     );
   return (

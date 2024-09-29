@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import styles from "./Map.module.css";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import styles from './Map.module.css';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import useReviews from './../hooks/useReviews';
 import {
   MapContainer,
   TileLayer,
@@ -8,22 +9,20 @@ import {
   Popup,
   useMap,
   useMapEvent,
-} from "react-leaflet";
-import { useCities } from "../contexts/CitiesContext";
-import { useGeolocation } from "../hooks/useGeolocation";
-import Button from "./Button";
-import useUrlPostion from "../hooks/useUrlPostion";
+} from 'react-leaflet';
+import { useGeolocation } from '../hooks/useGeolocation';
+import Button from './Button';
+import useUrlPostion from '../hooks/useUrlPostion';
 export default function Map() {
-  const { cities } = useCities();
+  
+  const { data: cities, isLoading } = useReviews();
+
   const [mapPostion, setMapPostion] = useState([40, 0]);
   const {
     isLoading: isLoadingPosition,
     position: geolocationPostion,
     getPosition,
   } = useGeolocation();
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const mapLat = searchParams.get("lat");
-  // const mapLng = searchParams.get("lng");
 
   const [mapLat, mapLng] = useUrlPostion();
 
@@ -35,11 +34,11 @@ export default function Map() {
     if (geolocationPostion)
       setMapPostion([geolocationPostion.lat, geolocationPostion.lng]);
   }, [geolocationPostion]);
-
+  if (isLoading) return null;
   return (
     <div className={styles.mapContainer}>
       <Button type="position" onClick={getPosition}>
-        {isLoadingPosition ? "Loading..." : "Use your postion"}
+        {isLoadingPosition ? 'Loading...' : 'Use your postion'}
       </Button>
 
       <MapContainer
@@ -52,7 +51,7 @@ export default function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        {cities.map(({ position: { lat, lng } }, id, emoji) => {
+        {cities.map(({ lat, lng }, id, emoji) => {
           return (
             <Marker position={[lat, lng]} key={id}>
               <Popup>

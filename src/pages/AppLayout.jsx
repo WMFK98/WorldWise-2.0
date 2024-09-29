@@ -1,10 +1,10 @@
 // import Map from "../components/Map";
 // import Sidebar from "../components/Sidebar";
-import Map from "../components/Map";
-import Sidebar from "../components/Sidebar";
-import User from "../components/User";
+import Map from '../ui/Map';
+import Sidebar from '../ui/Sidebar';
+import User from '../ui/User';
 
-import styles from "./AppLayout.module.css";
+import styles from './AppLayout.module.css';
 
 function AppLayout() {
   return (

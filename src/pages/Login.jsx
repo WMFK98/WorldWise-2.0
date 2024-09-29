@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
-import styles from "./Login.module.css";
-import PageNav from "../components/PageNav";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/FakeAuthContext";
-import Button from "../components/Button";
+import { useEffect, useState } from 'react';
+import styles from './Login.module.css';
+import PageNav from '../ui/PageNav';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/FakeAuthContext';
+import Button from '../ui/Button';
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const navigate = useNavigate();
-  const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
-  const { isAuthenticated, login } = useAuth();
+  const [email, setEmail] = useState('jack@example.com');
+  const [password, setPassword] = useState('qwerty');
+  const isAuthenticated = true,
+    login = null;
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/app", { replace: true });
+    if (isAuthenticated) navigate('/app', { replace: true });
   }, [isAuthenticated]);
 
   return (
