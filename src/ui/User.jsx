@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/FakeAuthContext';
 import styles from './User.module.css';
 import { useEffect } from 'react';
+import useUser from '../hooks/useUser';
 
 function User() {
-  const user = null,
+  const { user } = useUser(),
     logout = null;
+  console.log(user);
   const navigate = useNavigate();
   function handleClick() {
     logout();
@@ -13,12 +15,12 @@ function User() {
   }
 
   return (
-    // <div className={styles.user}>
-    //   <img src={user.avatar} alt={user.name} />
-    //   <span>Welcome, {user.name}</span>
-    //   <button onClick={handleClick}>Logout</button>
-    // </div>
-    <div>user</div>
+    <div className={styles.user}>
+      {/* <img src={user.avatar} alt={user.email} /> */}
+      <span>Welcome, {user.email.split('.')[0]}</span>
+      <button onClick={handleClick}>Logout</button>
+    </div>
+    // <div>user</div>
   );
 }
 

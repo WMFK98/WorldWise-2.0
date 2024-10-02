@@ -36,14 +36,13 @@ function Form() {
   const { createReview } = useCreateReview();
 
   useEffect(() => {
-    console.log(lat, lng);
     if (!lat && !lng) return;
     (async () => {
       try {
         setGeocodingError('');
         setIsGegoLocationLoading(true);
         serchAddress({ lat, lng });
-        if (!data.countryCode)
+        if (!data?.countryCode)
           throw new Error(
             "That doesn't seem to be a city. Click somewhere else 💀"
           );
