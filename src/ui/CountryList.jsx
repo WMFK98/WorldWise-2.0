@@ -3,11 +3,10 @@ import styles from './CountryList.module.css';
 import Spinner from './Spinner';
 import Message from './Message';
 import CountryItem from './CountryItem';
-import { useCities } from '../contexts/CitiesContext';
+import useReviews from '../hooks/useReviews';
 
 export default function CountryList() {
-  const isLoading = false,
-    cities = [];
+  const { data: cities, isLoading } = useReviews();
   if (isLoading) return <Spinner />;
   const counties = cities.reduce((cur, { country, emoji }) => {
     if (cur.some((curCountry) => curCountry.country === country)) return cur;

@@ -19,7 +19,31 @@ export async function createReview(newReview) {
     .single();
   if (error) {
     console.error(error);
-    throw new Error('Settings could not be updated');
+    throw new Error('Review could not be created');
+  }
+
+  return data;
+}
+
+export async function getReview(id) {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select()
+    .eq('id', id)
+    .single();
+  if (error) {
+    console.error(error);
+    throw new Error('Review could not be created');
+  }
+
+  return data;
+}
+
+export async function deleteReview(id) {
+  const { data, error } = await supabase.from('reviews').delete().eq('id', id);
+  if (error) {
+    console.error(error);
+    throw new Error('Review could not be deleted');
   }
 
   return data;
@@ -33,7 +57,7 @@ export async function updateReview(newReview) {
     .single();
   if (error) {
     console.error(error);
-    throw new Error('Settings could not be updated');
+    throw new Error('Review could not be updated');
   }
   return data;
 }

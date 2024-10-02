@@ -24,6 +24,7 @@ function Form() {
   const [isGeoLocationLoading, setIsGegoLocationLoading] = useState(false);
   // const { createCity } = useCities();
   const [lat, lng] = useUrlPostion();
+
   const [cityName, setCityName] = useState('');
   const [emoji, setEmoji] = useState();
   const [country, setCountry] = useState('');
@@ -35,6 +36,7 @@ function Form() {
   const { createReview } = useCreateReview();
 
   useEffect(() => {
+    console.log(lat, lng);
     if (!lat && !lng) return;
     (async () => {
       try {
@@ -54,7 +56,7 @@ function Form() {
         setIsGegoLocationLoading(false);
       }
     })();
-  }, [lat, lng]);
+  }, [lat, lng, serchAddress]);
 
   async function handleSubmit() {
     if (!cityName & !date) return;

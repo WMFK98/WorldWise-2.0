@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './CityItem.module.css';
 import { Link } from 'react-router-dom';
-import { useCities } from '../contexts/CitiesContext';
+import useDeleteReview from '../hooks/useDeleteReview';
 import Spinner from './Spinner';
 export default function CityItem({ city }) {
-  console.log(city);
   const { city: cityName, emoji, createAt, id, lat, lng } = city;
   // const { currentCity, deleteCity, isLoading } = useCities();
+  const { deleteReview, isLoading } = useDeleteReview();
+  console.log(createAt);
   const formatDate = (date) =>
     new Intl.DateTimeFormat('en', {
       day: 'numeric',
@@ -17,17 +18,17 @@ export default function CityItem({ city }) {
 
   async function handleDeleteCity(e) {
     e.preventDefault();
-    // deleteCity(id);
+    deleteReview(id);
   }
 
-  // if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   return (
     // currentCity.id === id && styles['cityItem--active']
     <li>
       <Link
         className={`${styles.cityItem} ${''}`}
-        to={`${id}?lat=${lat}&lng=${lng}`}
+        to={`/app/cities/${id}?lat=${lat}&lng=${lng}`}
       >
         <span className={styles.emoji}>{emoji}</span>
         <span className={styles.name}>{cityName}</span>
