@@ -12,6 +12,7 @@ import DatePicker from 'react-datepicker';
 import { useCities } from '../contexts/CitiesContext';
 import useSerchAddress from '../hooks/useSerchAddress';
 import useCreateReview from '../hooks/useCreateReview';
+import useUser from '../hooks/useUser';
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
@@ -34,6 +35,7 @@ function Form() {
   const navigate = useNavigate();
   const { data, serchAddress } = useSerchAddress();
   const { createReview } = useCreateReview();
+  const { user } = useUser();
 
   useEffect(() => {
     if (!lat && !lng) return;
@@ -67,6 +69,7 @@ function Form() {
       notes,
       lat,
       lng,
+      owner: user.id,
     };
 
     createReview(newCity);

@@ -11,7 +11,7 @@ import useLogin from '../hooks/useLogin';
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const navigate = useNavigate();
-  const [email, setEmail] = useState('wishira2013@coth@gmail.com');
+  const [email, setEmail] = useState('wishira2013.coth@gmail.com');
   const [password, setPassword] = useState('0827063076');
   const { isAuthenticated, isLoading } = useUser();
   const { login, isLoading: isChecking } = useLogin();

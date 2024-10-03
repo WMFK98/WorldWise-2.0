@@ -3,7 +3,6 @@ import { login as loginApi } from '../services/apiAuth';
 import { useNavigate } from 'react-router-dom';
 
 export default function useLogin() {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { mutate: login, isLoading } = useMutation({
     mutationFn: (auth) => loginApi(auth),
